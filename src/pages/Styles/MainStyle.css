@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran&display=swap');
+
+
+header {
+display: flex;
+width: 100%;
+background: #009900;
+height: 75px;
+border-bottom-width: 3px;
+border-bottom-style: solid;
+border-color: #aad667;
+}
+.header-text{
+
+}
+.header-img{
+margin-right: 20px;
+margin-left: 5px;
+margin-top: 5px;
+margin-bottom: 5px;
+cursor: default;
+}
+
+body {
+margin: 0;
+min-height: 100vh;
+background-color: #f0fff0;
+}
+
+h2 {
+font-family: Lobster, cursive;
+text-transform: uppercase;
+
+}
+
+.noHighlight {
+color: #333333;
+cursor: default;
+}
+
+.highlight {
+color: #aad667;
+cursor: default;
+}
+
+* {
+font-family: 'Catamaran', sans-serif;
+}
+
+   
+    
+.startButton{
+border-left-width: 0px;
+border-left-style: solid;
+border-top-width: 0px;
+border-top-style: solid;
+border-right-width: 0px;
+border-right-style: solid;
+border-bottom-width: 0px;
+border-bottom-style: solid;
+width: 200px;
+height: 45px;
+text-transform: uppercase;
+color: #120a8f;
+background-color: #5d76cb;
+margin-top: 20px;
+}
+
+.startButtonTop{
+border-left-width: 2px;
+border-left-style: solid;
+border-top-width: 2px;
+border-top-style: solid;
+border-right-width: 2px;
+border-right-style: solid;
+border-bottom-width: 2px;
+border-bottom-style: solid;
+border-color: #333333;
+margin-top: 20px;
+margin-bottom: 20px;
+cursor: pointer;
+margin-left: auto;
+margin-right: 1em;
+font-family: Lobster, cursive;
+font-size: 16pt;
+background-color: #f0fff0;
+color: #333333;
+padding-top: 0px;
+padding-right: 25px;
+padding-left: 25px;
+
+}
+
+.backGround{
+}
+
+.mainContent{
+}
