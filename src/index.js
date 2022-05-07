@@ -5,13 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {MainPage} from './pages/MainPage'
 import {NoRegister} from './pages/NoRegisterPage'
+import {Login} from './pages/LoginPage'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const mainPage = (<MainPage/>);
 const noRegister = (<NoRegister/>)
-
+const login = (<Login/>)
 const router = (
 
   <div>
@@ -20,6 +21,7 @@ const router = (
       <Routes>
         <Route path="/" element={mainPage} />
         <Route path="/NoRegistration" element={noRegister} />
+        <Route path="/Login" element={login} />
         <Route path="*" element={mainPage} />
       </Routes>
     </div>

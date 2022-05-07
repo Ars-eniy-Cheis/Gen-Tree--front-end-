@@ -18,6 +18,7 @@ import './Styles/Diagram.css';
 const engine = createEngine();
 const model = new DiagramModel();
 let nameNode = 'You';
+let delimiter = 1;
 
 function NoRegister(props){
   const [modalActive, setModalActive] = useState(false);
@@ -59,7 +60,8 @@ function addParent(name, setModalActive, pos, title){
   let child = getNodeByName(nameNode);
   //console.log('child: ', child.position.x);
   let yPos = child.position.y + pos*50;
-  let xPos = child.position.x - 200;
+  let xPos = (child.position.x - 200)/delimiter;
+  delimiter += 1;
   createNodeElement(name, xPos, yPos, setModalActive);
   let parent = getNodeByName(name);
   let parentPort = parent.addOutPort('Child');
@@ -72,26 +74,6 @@ function addParent(name, setModalActive, pos, title){
 }
 
 
-function addFather(name, setModalActive){
-  let child = getNodeByName(nameNode);
-  //console.log('child: ', child.position.x);
-  let yPos = child.position.y + 50;
-  let xPos = child.position.x - 200;
-  createNodeElement(name, xPos, yPos, setModalActive);
-  let father = getNodeByName(name);
-  let fatherPort = father.addOutPort('Child');
-  console.log(nameNode);
-  //child.setParent(father);
-  let childPort = child.addInPort('father');
-  let link = fatherPort.link(childPort);
-  console.log(link);
-  link.setColor('black');
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
 function getNodeByName(name){
   let nodes = model.getNodes();
   for(let i = 0; i < nodes.length; i++){
@@ -100,10 +82,6 @@ function getNodeByName(name){
     }
   }
   return '';
-}
-
-function boundTwoNodes(name1, name2){
-
 }
 
 function CreateNode(props){
@@ -132,28 +110,7 @@ function createNodeElement(name, width, height, setModalActive){
   engine.setModel(model);
 }
 
-function NodeAddingWindow(props){
-  return(
-    <div>
-        <button onClick={()=>{ 
-          props.setModalActive(false);
-          return <CreateNode name={'Mother'} setModalActive={props.setModalActive} width={200} height={200}/>; 
-
-          }} >
-         Add Mother
-        </button>
-
-        <button onClick={()=>{ CreateNode(); }} >
-         Add Father
-        </button>
-
-    </div>
-  );
-}
-
 export {NoRegister}
-
-
 
 /*
   Обращение к имени его смена
