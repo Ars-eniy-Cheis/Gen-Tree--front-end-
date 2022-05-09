@@ -34,7 +34,7 @@ function MainPart(props){
         <img class ="backGround" id="background" src={require("./Images/background.png")} alt="StartBG"/>
         <center>
             <li class="content__item">
-					<button class="button button--pandora" onClick={()=>{navigate("/NoRegistration");}}><span>Quick Start</span></button>
+				<button class="button button--pandora" onClick={()=>{navigate("/NoRegistration");}}><span>Quick Start</span></button>
 			</li>
             
         </center>

@@ -18,7 +18,7 @@ import './Styles/Diagram.css';
 const engine = createEngine();
 const model = new DiagramModel();
 let nameNode = 'You';
-let delimiter = 1;
+let delimiter = 0.5;
 
 function NoRegister(props){
   const [modalActive, setModalActive] = useState(false);
@@ -59,9 +59,9 @@ function NoRegister(props){
 function addParent(name, setModalActive, pos, title){
   let child = getNodeByName(nameNode);
   //console.log('child: ', child.position.x);
-  let yPos = child.position.y + pos*50;
-  let xPos = (child.position.x - 200)/delimiter;
-  delimiter += 1;
+  let yPos = (child.position.y + pos*50);
+  let xPos = child.position.x - 200;
+  delimiter -= 0.001;
   createNodeElement(name, xPos, yPos, setModalActive);
   let parent = getNodeByName(name);
   let parentPort = parent.addOutPort('Child');
