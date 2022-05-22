@@ -13,7 +13,8 @@ async function pingAsync(){
 function register(data){
     registerAsync(JSON.stringify(data))
     .then(function(answer){
-      console.log(answer);
+      console.log('Model answer: ', answer);
+      return answer;
     });
 }
 
