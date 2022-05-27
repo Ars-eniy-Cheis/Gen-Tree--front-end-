@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import {Header} from './MainPage'
+import {Header, setToken} from './MainPage'
 import {ping, login} from '../Model/Model'
 
 import './Styles/MainStyle.css';
@@ -8,15 +8,24 @@ import './Styles/LoginStyle.css';
 import './Styles/Buttons.css';
 
 function Login(props) {
+  let decider = (answer) => {
+    if(answer == 'Wrong mail or password'){
+        alert(answer);
+    }
+    else{
+      setToken(answer);
+      navigate("/PersonalPage");
+    }
+  };
     const navigate = useNavigate();
-    const [login, setLogin] = useState('');
+    const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     return (
       <div>
         <Header/>
         <center class="customContainer">
             <label class="custom-field one" id="mailField">
-                <input type="email" placeholder=" " onChange={e => setLogin(e.target.value)}/>
+                <input type="email" placeholder=" " onChange={e => setMail(e.target.value)}/>
                 <span class="placeholder">Enter Email</span>
             </label>
             <br/>
@@ -29,7 +38,7 @@ function Login(props) {
             <br/>
             <br/>
             <li class="content__item">
-				<button class="button button--anthe" onClick={()=>{parseAndSendInput(login, password);}}><span>Login</span></button>
+				<button class="button button--anthe" onClick={()=>{parseAndSendInput(mail, password, decider);}}><span>Login</span></button>
 			</li>
             <br/>
             <br/>
@@ -41,12 +50,12 @@ function Login(props) {
     );
 }
 
-function parseAndSendInput(login, password){
+function parseAndSendInput(email, password, decider){
   let data = {
-    email: login,
+    email: email,
     password: password,
   }
-  login(data);
+  login(data, decider);
 }
 
 export{Login}

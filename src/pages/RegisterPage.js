@@ -7,6 +7,16 @@ import './Styles/MainStyle.css';
 import './Styles/LoginStyle.css';
 import './Styles/Buttons.css';
 function Register(props) {
+    //function
+    let decider = (answer) => {
+        if(answer == 'Registration Complete'){
+            navigate("/Login");
+        }
+        else{
+            alert(answer);
+        }
+      };
+
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [secondName, setSecondName] = useState('');
@@ -57,20 +67,15 @@ function Register(props) {
         <br/>
         <br/>
             <li class="content__item">
-				<button class="button button--hyperion" onClick={()=>{let answer = checkAndDone(name, secondName, fathersName, email, password, repeatPassword);
-                                                                    if(answer == 'Registration Complete'){
-                                                                        navigate("/Login");
-                                                                    }
-                                                                    else{
-                                                                        alert(answer);
-                                                                    } }}><span><span>Done</span></span></button>
+				<button class="button button--hyperion" onClick={()=>{checkAndDone(name, secondName, fathersName, email, password, repeatPassword, decider);
+                                                                     }}><span><span>Done</span></span></button>
 			</li>
         </center>
       </div>
     );
 }
 
-function checkAndDone(name, secondName, fathersName, email, password, repeatPassword){
+function checkAndDone(name, secondName, fathersName, email, password, repeatPassword, decider){
     let answer;
     if(name == '' || secondName == '' || email == '' || password == '' || repeatPassword == ''){
         answer = 'Одно (или несколько) из полей не заполнено';
@@ -85,17 +90,15 @@ function checkAndDone(name, secondName, fathersName, email, password, repeatPass
                 password: password,
                 date_of_bith : "2000:05:10"
             }
-            register(data);
-            answer = 'Registration Complete';
+            register(data, decider);
+            //answer = 'Registration Complete';
             
         }
         else{
-            answer = 'пароли не совпадают';
+            alert('пароли не совпадают');
         }
         //alert('Все поля заполнены');
     }
-    console.log('answer:', answer);
-    return answer;
 
 }
 

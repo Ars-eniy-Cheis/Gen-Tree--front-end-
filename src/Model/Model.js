@@ -1,3 +1,5 @@
+const path = "http://localhost:8080/GenTree/APP/";
+
 function ping(){
     pingAsync()
     .then(function(answer){
@@ -6,34 +8,38 @@ function ping(){
 }
 
 async function pingAsync(){
-    let response = await fetch("http://localhost:8080/GenTree/APP/ping", {method: "GET", headers: {'Content-Type': 'text/plain;charset=utf-8'}});
+    let response = await fetch(path + "ping", {method: "GET", headers: {'Content-Type': 'text/plain;charset=utf-8'}});
     return response.text();
 }
 
-function register(data){
+function register(data, decider){
     registerAsync(JSON.stringify(data))
     .then(function(answer){
       console.log('Model answer: ', answer);
-      return answer;
+      decider(answer);
     });
 }
 
 async function registerAsync(data){
-    let response = await fetch("http://localhost:8080/GenTree/APP/register", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data});
+    let response = await fetch(path + "register", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data});
     return response.text();
 }
 
-function login(data){
+function login(data, decider){
   loginAsync(JSON.stringify(data))
   .then(function(answer){
+    decider(answer);
     console.log('Model answer: ', answer);
-    return answer;
   });
 }
 
 async function loginAsync(data){
-  let response = await fetch("http://localhost:8080/GenTree/APP/login", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data});
+  let response = await fetch(path + "login", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data});
   return response.text();
 }
 
-export{ping, register, login}
+function personalData(data){
+  let response = fetch(path + "personalData", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data});
+}
+
+export{ping, register, login, personalData}

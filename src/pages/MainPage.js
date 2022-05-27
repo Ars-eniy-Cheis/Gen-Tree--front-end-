@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 import './Styles/MainStyle.css';
 import './Styles/Buttons.css';
 
+let token;
+
+function setToken(tok){
+    token = tok;
+}
 
 function MainPage(props) {
     return (
@@ -42,4 +47,4 @@ function MainPart(props){
     );
 }
 
-export {MainPage, Header}
+export {MainPage, Header, token, setToken}

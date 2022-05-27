@@ -7,6 +7,7 @@ import {MainPage} from './pages/MainPage'
 import {NoRegister} from './pages/NoRegisterPage'
 import {Login} from './pages/LoginPage'
 import {Register} from './pages/RegisterPage'
+import {PersonalPage} from './pages/PersonalPage'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,6 +16,8 @@ const mainPage = (<MainPage/>);
 const noRegister = (<NoRegister/>)
 const login = (<Login/>)
 const register = (<Register/>)
+const personaPage = (<PersonalPage/>)
+
 const router = (
 
   <div>
@@ -25,6 +28,7 @@ const router = (
         <Route path="/NoRegistration" element={noRegister} />
         <Route path="/Login" element={login} />
         <Route path="/Register" element={register} />
+        <Route path="/PersonalPage" element={personaPage} />
         <Route path="*" element={mainPage} />
       </Routes>
     </div>
