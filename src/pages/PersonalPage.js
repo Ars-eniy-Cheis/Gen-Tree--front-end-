@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import {Header, token} from './MainPage'
+import {Header, token, tokenIsEmpty} from './MainPage'
 import { ModalWindow } from '../Components/ModalWindows/ModalWindow';
 import {personalData} from '../Model/Model'
 
@@ -16,12 +16,27 @@ import {
 
 import './Styles/Diagram.css';
 
+let personData;
+
 const engine = createEngine();
 const model = new DiagramModel();
 let nameNode = 'You';
+
 function PersonalPage(props){
-  console.log(token);
-  personalData(token);
+  let setPersonalData = (data) => {
+    personData = data;
+  }
+
+  const navigate = useNavigate();
+
+  console.log('token: ', token);
+  if(tokenIsEmpty()){
+    navigate("/Login");
+  }
+
+  personalData(token, setPersonalData);
+  
+  console.log('person Data:', personData);
     return (
         <div>
           <Header/>

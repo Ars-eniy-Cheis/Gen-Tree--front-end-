@@ -15,7 +15,6 @@ async function pingAsync(){
 function register(data, decider){
     registerAsync(JSON.stringify(data))
     .then(function(answer){
-      console.log('Model answer: ', answer);
       decider(answer);
     });
 }
@@ -29,7 +28,6 @@ function login(data, decider){
   loginAsync(JSON.stringify(data))
   .then(function(answer){
     decider(answer);
-    console.log('Model answer: ', answer);
   });
 }
 
@@ -38,8 +36,14 @@ async function loginAsync(data){
   return response.text();
 }
 
-function personalData(data){
-  let response = fetch(path + "personalData", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data});
+function personalData(data, setPersonalData){
+  fetch(path + "personalData", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data})
+  .then(response => response.text())
+   .then((response) => {
+      console.log(response);
+      setPersonalData(response);
+   })
+  //return response;
 }
 
 export{ping, register, login, personalData}
