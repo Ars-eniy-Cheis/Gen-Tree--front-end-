@@ -40,7 +40,6 @@ function personalData(data, setPersonalData){
   fetch(path + "personalData", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data})
   .then(response => response.text())
    .then((response) => {
-      console.log(response);
       setPersonalData(response);
    })
   //return response;
