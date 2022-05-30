@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import {Header, token, tokenIsEmpty} from './MainPage';
 import { ModalWindow } from '../Components/ModalWindows/ModalWindow';
+import Table from '../Components/Table/Table';
 import {personalData} from '../Model/Model';
 import {CreateNode, addParent} from '../Model/Tree';
 
@@ -17,7 +18,8 @@ import {
 
 import './Styles/Diagram.css';
 
-let personData;
+let datas = [
+]
 
 const engine = createEngine();
 const model = new DiagramModel();
@@ -26,11 +28,15 @@ function PersonalPage(props){
 
   const [modalActive, setModalActive] = useState(false);
   const [value, setValue] = useState('');
+  const [personData, setPersonData] = useState([
+    {
+    firstName: "",
+    secondName: "",
+    fatherName: "",
+    role: "",
+    }
+  ]);
 
-  let setPersonalData = (data) => {
-    personData = data;
-    //buildTree(personData, setModalActive);
-  }
 
   const navigate = useNavigate();
 
@@ -38,12 +44,13 @@ function PersonalPage(props){
     navigate("/Login");
   }
 
-  personalData(token, setPersonalData);
+  personalData(token, setPersonData);
 
 
     return (
         <div>
           <Header/>
+          <Table data={personData}/>
         </div>
     );
 }

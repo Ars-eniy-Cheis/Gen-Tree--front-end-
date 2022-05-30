@@ -36,11 +36,18 @@ async function loginAsync(data){
   return response.text();
 }
 
-function personalData(data, setPersonalData){
+function personalData(data, setPersonData){
   fetch(path + "personalData", {method: "POST", headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: data})
   .then(response => response.text())
    .then((response) => {
-      setPersonalData(response);
+    let personDataArray = response.split("\n");
+    let personalData = [];
+    for(let i = 0; i < personDataArray.length; i++){
+      //console.log(personDataArray[i]);
+      personalData.push(JSON.parse(personDataArray[i]));
+    }
+    setPersonData(personalData);
+    console.log(personalData);
    })
   //return response;
 }
